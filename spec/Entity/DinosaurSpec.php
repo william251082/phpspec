@@ -50,9 +50,18 @@ class DinosaurSpec extends ObjectBehavior
         $this->setLength(15);
 
         $this->getLength()->shouldBeGreaterThan(12);
-
-//        var_dump($this->getLength());
     }
-    // Object magic in __call of /vendor/phpspec/phpspec/src/PhpSpec/ObjectBehavior.php
-    // Subject magic in __call of /vendor/phpspec/phpspec/src/PhpSpec/Wrapper/Subject.php
+
+    function it_should_return_full_description()
+    {
+        $this->getDescription()->shouldReturn('The Unknown non-carnivorous dinosaur is 0 meters long');
+    }
+
+    function it_should_return_full_description_for_tyrannosaurus()
+    {
+        $this->beConstructedWith('Tyrannosaurus', true);
+        $this->setLength(12);
+
+        $this->getDescription()->shouldReturn('The Tyrannosaurus carnivorous dinosaur is 12 meters long');
+    }
 }
