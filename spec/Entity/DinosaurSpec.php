@@ -51,5 +51,10 @@ class DinosaurSpec extends ObjectBehavior
         $this->setLength(15);
 
         $this->getLength()->shouldBeGreaterThan(12);
+
+//        var_dump($this);
+//        var_dump($this->getWrappedObject());
+
+        $this->callOnWrappedObject('shouldHandle', [2]);
     }
 }
