@@ -89,4 +89,21 @@ class DinosaurSpec extends ObjectBehavior
 
         return $this->growVelociraptor(1)->shouldBeAnInstanceOf(Dinosaur::class);
     }
+
+    function it_should_be_herbivore_by_default()
+    {
+        $this->shouldNotBeCarnivorous();
+    }
+
+    function it_should_allow_to_check_if_dinosaur_is_carnivorous()
+    {
+        $this->beConstructedWith('Velociraptor', true);
+
+        $this->shouldBeCarnivorous();
+    }
+
+    function it_should_allow_to_check_if_two_dinosaurs_have_same_diet()
+    {
+        $this->shouldHaveSameDietAs(new Dinosaur());
+    }
 }
