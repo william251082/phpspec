@@ -5,7 +5,6 @@ namespace spec\App\Entity;
 use App\Entity\Dinosaur;
 use PhpSpec\Exception\Example\FailureException;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
 class DinosaurSpec extends ObjectBehavior
 {
@@ -52,9 +51,8 @@ class DinosaurSpec extends ObjectBehavior
 
         $this->getLength()->shouldBeGreaterThan(12);
 
-//        var_dump($this);
-//        var_dump($this->getWrappedObject());
-
-        $this->callOnWrappedObject('shouldHandle', [2]);
+//        var_dump($this->getLength());
     }
+    // Object magic in __call of /vendor/phpspec/phpspec/src/PhpSpec/ObjectBehavior.php
+    // Subject magic in __call of /vendor/phpspec/phpspec/src/PhpSpec/Wrapper/Subject.php
 }
