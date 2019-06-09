@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use App\Exception\NotABuffetException;
+
 class Enclosure
 {
     /**
@@ -16,6 +18,16 @@ class Enclosure
 
     public function addDinosaur($dinosaur)
     {
+        if (!$this->canAddDinosaur($dinosaur)) {
+            throw new NotABuffetException();
+        }
+
         return $this->dinosaurs[] = $dinosaur;
+    }
+
+    private function canAddDinosaur(Dinosaur $dinosaur): bool
+    {
+        return count($this->dinosaurs) === 0
+            || ($this->dinosaurs[0]->isCarnivorous() === $this->isCarnivorous());
     }
 }
