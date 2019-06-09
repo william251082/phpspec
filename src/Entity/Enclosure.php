@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Exception\DinosaursAreRunningRampantException;
 use App\Exception\NotABuffetException;
 
 class Enclosure
@@ -11,6 +12,11 @@ class Enclosure
      */
     private $dinosaurs = [];
 
+    /**
+     * @var Security[]
+     */
+    private $securities = [];
+
     public function getDinosaurs(): array
     {
         return $this->dinosaurs;
@@ -18,6 +24,10 @@ class Enclosure
 
     public function addDinosaur($dinosaur)
     {
+        if (!$this->isSecurityActive()) {
+            throw new DinosaursAreRunningRampantException('Are you crazy?');
+        }
+
         if (!$this->canAddDinosaur($dinosaur)) {
             throw new NotABuffetException();
         }
@@ -28,5 +38,16 @@ class Enclosure
     private function canAddDinosaur(Dinosaur $dinosaur): bool
     {
         return count($this->dinosaurs) === 0 || $dinosaur->hasSameDietAs($this->dinosaurs[0]);
+    }
+
+    private function isSecurityActive(): bool
+    {
+        foreach ($this->securities as $security) {
+            if ($security->getIsActive()) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
