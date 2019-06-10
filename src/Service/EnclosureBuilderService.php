@@ -7,6 +7,11 @@ use App\Entity\Security;
 
 class EnclosureBuilderService
 {
+    public function __construct($argument1)
+    {
+        // TODO: write logic here
+    }
+
     public function buildEnclosure(
         int $numberOfSecuritySystems = 1,
         int $numberOfDinosaurs = 3
