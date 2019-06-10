@@ -2,14 +2,18 @@
 
 namespace App\Service;
 
+use App\Entity\Dinosaur;
 use App\Entity\Enclosure;
 use App\Entity\Security;
+use App\Factory\DinosaurFactory;
 
 class EnclosureBuilderService
 {
-    public function __construct($argument1)
+    private $dinosaurFactory;
+
+    public function __construct(DinosaurFactory $dinosaurFactory)
     {
-        // TODO: write logic here
+        $this->dinosaurFactory = $dinosaurFactory;
     }
 
     public function buildEnclosure(
@@ -20,6 +24,7 @@ class EnclosureBuilderService
         $enclosure = new Enclosure();
 
         $this->addSecuritySystems($numberOfSecuritySystems, $enclosure);
+        $this->addDinosaurs($numberOfDinosaurs, $enclosure);
 
         return $enclosure;
     }
@@ -32,5 +37,14 @@ class EnclosureBuilderService
 
             $enclosure->addSecurity($security);
         }
+    }
+
+    private function addDinosaurs(int $numberOfDinosaurs, Enclosure $enclosure)
+    {
+        for ($i = 0; $i < $numberOfDinosaurs; $i++) {
+
+            $enclosure->addDinosaur($this->dinosaurFactory->growVelociraptor(5));
+        }
+
     }
 }
