@@ -1,2 +1,2 @@
-# phpspec: Testing... *Designing*
+PHPSPEC
 

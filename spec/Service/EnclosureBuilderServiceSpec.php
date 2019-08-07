@@ -28,9 +28,10 @@ class EnclosureBuilderServiceSpec extends ObjectBehavior
 
         $dinosaurFactory
             ->growVelociraptor(Argument::type('integer'))
-            ->willReturn($dino1, $dino2);
+            ->willReturn($dino1, $dino2)
+            ->shouldBeCalledTimes(2);
 
-        $enclosure = $this->buildEnclosure();
+        $enclosure = $this->buildEnclosure(1, 2);
 
         $enclosure->shouldBeAnInstanceOf(Enclosure::class);
         $enclosure->isSecurityActive()->shouldReturn(true);
