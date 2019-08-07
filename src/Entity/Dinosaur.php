@@ -46,12 +46,12 @@ class Dinosaur
 
     public function getGenus(): string
     {
-        return $this->getGenus();
+        return $this->genus;
     }
 
     public function isCarnivorous(): bool
     {
-        return $this->isCarnivorous();
+        return $this->isCarnivorous;
     }
 
     public function hasSameDietAs($dinosaur): bool
