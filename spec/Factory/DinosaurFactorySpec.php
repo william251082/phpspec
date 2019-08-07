@@ -19,7 +19,7 @@ class DinosaurFactorySpec extends ObjectBehavior
 
         $dinosaur->shouldBeAnInstanceOf(Dinosaur::class);
         $dinosaur->getGenus()->shouldBeString();
-        $dinosaur->getGenus()->should('Velociraptor');
+        $dinosaur->getGenus()->shouldBe('Velociraptor');
         $dinosaur->getLength()->shouldBe(5);
     }
 }
