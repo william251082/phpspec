@@ -42,9 +42,7 @@ class EnclosureBuilderService
     private function addDinosaurs(int $numberOfDinosaurs, Enclosure $enclosure)
     {
         for ($i = 0; $i < $numberOfDinosaurs; $i++) {
-
-            $enclosure->addDinosaur($this->dinosaurFactory->growVelociraptor(5));
+            $enclosure->addDinosaur($this->dinosaurFactory->growVelociraptor(5 + $i));
         }
-
     }
 }
